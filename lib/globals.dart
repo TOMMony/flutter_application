@@ -1,6 +1,6 @@
 List<ToDoItem> toDoList = [];
-var currentId = 0;
-
+int currentId = 0;
+bool showTextField = false;
 class ToDoItem {
   late int id;
   late String title;

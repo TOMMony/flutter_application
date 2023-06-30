@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TodoBody();
+    return showTextField ? const InputEntry() : const TodoBody();
   }
 }
 
@@ -24,7 +24,8 @@ class _TodoBodyState extends State<TodoBody> {
       return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(toDoList[index].id.toString()),
         Text(toDoList[index].title.toString()),
-        Text("${toDoList[index].description.substring(0,min(toDoList[index].description.length, 20))}..."),
+        Text(
+            "${toDoList[index].description.substring(0, min(toDoList[index].description.length, 20))}..."),
         FloatingActionButton(
             child: const Icon(Icons.cancel),
             onPressed: () {
@@ -38,16 +39,20 @@ class _TodoBodyState extends State<TodoBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(children: _createChildren()),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              toDoList.add(ToDoItem(currentId++, "title", "desc", "bruh"));
-            });
-          },
-          child: const Icon(Icons.add)),
-    );
+    return !showTextField
+        ? Scaffold(
+            body: Column(children: _createChildren()),
+            floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  setState(() {
+                    showTextField = true;
+                    print(showTextField);
+                    //toDoList.add(ToDoItem(currentId++, "title", "desc", "bruh"));
+                  });
+                },
+                child: const Icon(Icons.add)),
+          )
+        : const InputEntry();
   }
 }
 
@@ -59,8 +64,31 @@ class InputEntry extends StatefulWidget {
 }
 
 class _InputEntryState extends State<InputEntry> {
+  final titleController = TextEditingController(text: "TODO Title");
+  final descController = TextEditingController(text: "TODO Description");
+  final dueController = TextEditingController(text: "TODO Due Date");
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return showTextField ? Column(children: [
+      Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [const Text("ID"), Text(currentId.toString())]),
+      Form(
+          child: Column(children: [
+        TextFormField(controller:titleController),
+        TextFormField(controller:descController),
+        TextFormField(controller:dueController),
+        ElevatedButton(
+            onPressed: () {
+              toDoList.add(ToDoItem(currentId++, titleController.text, descController.text, dueController.text));
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("Great"),
+              ));
+              setState(() {
+                showTextField = false;
+              });
+            }, child: const Text("Submit"),)
+      ])),
+    ]) : const TodoBody();
   }
 }
