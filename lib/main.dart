@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_application_1/widget_tree.dart';
 
 import 'home_page.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const RootPage(),
+      home: const WidgetTree(),
     );
   }
 }
@@ -58,4 +59,11 @@ class _RootPageState extends State<RootPage> {
   }
 }
 
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

@@ -1,6 +1,7 @@
 List<ToDoItem> toDoList = [];
 int currentId = 0;
 bool showTextField = false;
+bool loggedin = false;
 class ToDoItem {
   late int id;
   late String title;
