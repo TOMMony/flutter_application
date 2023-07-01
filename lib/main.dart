@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_application_1/widget_tree.dart';
+import "globals.dart";
+import "package:flutter_application_1/home_page.dart";
+import "package:flutter_application_1/auth.dart";
 
-import 'home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,18 +37,29 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  int currentPage = 0;
+  String clean(String word){
+    String result = "";
+    for(int i = 0; i<word.length; i++){
+      if(word[i] != "." && word[i] != "@"){
+        result += word[i];
+      }
+    }
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
+    uid = clean(Auth().currentUser!.email!);
     return Scaffold(
       appBar: AppBar(
         title: const Text("My To-Do App"),
       ),
       body: const HomePage(),
+      
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon:  Icon(Icons.home), label: "Home"),
-          NavigationDestination(icon:  Icon(Icons.accessibility), label: "This"),
+          NavigationDestination(icon:  Icon(Icons.accessibility), label: "COMING SOON"),
         ],
         onDestinationSelected: (int index){
           setState(() {
@@ -59,11 +72,3 @@ class _RootPageState extends State<RootPage> {
   }
 }
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

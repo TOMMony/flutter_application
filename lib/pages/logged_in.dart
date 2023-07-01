@@ -13,7 +13,6 @@ class LoggedIn extends StatefulWidget {
 
 class _LoggedInState extends State<LoggedIn> {
   final User? user = Auth().currentUser;
-
   Future<void> signOut() async {
     await Auth().signOut();
   }

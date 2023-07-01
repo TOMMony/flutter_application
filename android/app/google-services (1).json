@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "969466506711",
+    "firebase_url": "https://flutter-to-do-list-f93af-default-rtdb.firebaseio.com",
+    "project_id": "flutter-to-do-list-f93af",
+    "storage_bucket": "flutter-to-do-list-f93af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969466506711:android:bb72403f012db792a3af92",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969466506711-2kgi0v913pifpudrqp6fh1bahve723n7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtexGidGjE0CMyxPlNVTwF6k1Q73NAiSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969466506711-2kgi0v913pifpudrqp6fh1bahve723n7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
